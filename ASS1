@@ -1,0 +1,160 @@
+import java.util.Scanner;
+
+
+public class ASS1 {
+
+
+   // class variables
+   String name;
+   int rollNo;
+   float[] marks = new float[5];
+   float total, average;
+   char grade;
+
+
+   // Constructor
+   public ASS1() {
+       Scanner sc = new Scanner(System.in);
+
+
+       System.out.print("Enter student name: ");
+       name = sc.nextLine();
+
+
+       System.out.print("Enter roll number: ");
+       rollNo = sc.nextInt();
+
+
+       System.out.println("Enter marks of 5 subjects:");
+       for (int i = 0; i < 5; i++) {
+           marks[i] = sc.nextFloat();
+           total += marks[i];
+       }
+
+
+       calculateResult();
+       sc.close();
+   }
+
+
+   // Method to calculate average and grade
+   public void calculateResult() {
+       average = total / 5;
+
+
+       if (average >= 90)
+           grade = 'A';
+       else if (average >= 80)
+           grade = 'B';
+       else if (average >= 70)
+           grade = 'C';
+       else if (average >= 60)
+           grade = 'D';
+       else
+           grade = 'E';
+
+
+       display();
+   }
+
+
+   // Method to display result
+   public void display() {
+       System.out.println("\n--- Student Result ---");
+       System.out.println("Name      : " + name);
+       System.out.println("Roll No   : " + rollNo);
+       System.out.println("Total     : " + total);
+       System.out.println("Average   : " + average);
+       System.out.println("Grade     : " + grade);
+   }
+
+
+   // Main method
+   public static void main(String[] args) {
+       new ASS1(); // object creation
+   }
+}
+
+
+
+
+2.
+// Base class
+class Employee {
+   protected double salary;
+
+
+   Employee(double salary) {
+       this.salary = salary;
+   }
+
+
+   void displaySalary() {
+       System.out.println("Salary: " + salary);
+   }
+}
+
+
+// Derived class 1
+class FullTimeEmployee extends Employee {
+
+
+   FullTimeEmployee(double salary) {
+       super(salary);
+   }
+
+
+   void calculateSalary() {
+       System.out.println("Full Time Employee");
+       System.out.println("Salary before hike:");
+       displaySalary();
+
+
+       salary = salary + (salary * 0.50); // 50% hike
+
+
+       System.out.println("Salary after 50% hike:");
+       displaySalary();
+       System.out.println();
+   }
+}
+
+
+// Derived class 2
+class InternEmployee extends Employee {
+
+
+   InternEmployee(double salary) {
+       super(salary);
+   }
+
+
+   void calculateSalary() {
+       System.out.println("Intern Employee");
+       System.out.println("Salary before hike:");
+       displaySalary();
+
+
+       salary = salary + (salary * 0.25); // 25% hike
+
+
+       System.out.println("Salary after 25% hike:");
+       displaySalary();
+       System.out.println();
+   }
+}
+
+
+// Main class
+public class ASS2 {
+   public static void main(String[] args) {
+
+
+       FullTimeEmployee fte = new FullTimeEmployee(40000);
+       InternEmployee intern = new InternEmployee(20000);
+
+
+       fte.calculateSalary();
+       intern.calculateSalary();
+   }
+}
